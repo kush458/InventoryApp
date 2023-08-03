@@ -30,4 +30,7 @@ public class Item {
         this.createdAt = createdAt;
     }
 
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 }
