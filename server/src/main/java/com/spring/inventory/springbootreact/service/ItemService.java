@@ -2,6 +2,7 @@ package com.spring.inventory.springbootreact.service;
 
 import com.spring.inventory.springbootreact.InventoryRepository;
 import com.spring.inventory.springbootreact.models.Item;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,9 @@ public class ItemService {
     public Item createItem(Item item) {
         inventoryRepo.save(item);
         return item;
+    }
+
+    public void deleteItem(ObjectId id) {
+        inventoryRepo.deleteById(id);
     }
 }
