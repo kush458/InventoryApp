@@ -1,5 +1,7 @@
+const URL = "http://localhost:8080/"
+
 const getItems = async () => {
-    const response = await fetch('https://inventory-app-server.onrender.com/items', {
+    const response = await fetch(URL + 'items/', {
         method: 'GET'
     })
         .then (res => res.json());
@@ -8,7 +10,7 @@ const getItems = async () => {
 };
 
 const addItem = async (item) => {
-    const response = await fetch('https://inventory-app-server.onrender.com/items', {
+    const response = await fetch(URL + 'items/', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -24,7 +26,7 @@ const addItem = async (item) => {
 }
 
 const deleteItem = async (itemId) => {
-    const response = await fetch(`https://inventory-app-server.onrender.com/items/${itemId}`, {
+    const response = await fetch(URL + `items/${itemId}`, {
         method: 'DELETE'
     })
         .then(res => {
@@ -40,7 +42,7 @@ const deleteItem = async (itemId) => {
 const editItem = async (itemInfo) => {
     const {item} = itemInfo;
 
-    const response = await fetch(`https://inventory-app-server.onrender.com/items/${item._id}`, {
+    const response = await fetch(URL + `items/`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json'
@@ -56,7 +58,7 @@ const editItem = async (itemInfo) => {
 }
 
 const sortItems = async (criterion) => {
-    const response = fetch(`https://inventory-app-server.onrender.com/items/sorted?by=${criterion}`, {
+    const response = fetch(URL + `items/sorted?by=${criterion}`, {
         method: 'GET'
     })
         .then(res => res.json())

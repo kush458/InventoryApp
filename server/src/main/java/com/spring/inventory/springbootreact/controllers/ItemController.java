@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/items")
+@CrossOrigin
 public class ItemController {
 
     @Autowired
