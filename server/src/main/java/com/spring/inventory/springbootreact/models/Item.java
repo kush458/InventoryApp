@@ -1,9 +1,12 @@
 package com.spring.inventory.springbootreact.models;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.util.Date;
 
@@ -12,7 +15,8 @@ import java.util.Date;
 public class Item {
 
     @Id
-    private ObjectId id;
+    @Field(targetType = FieldType.OBJECT_ID)
+    private String id;
 
     private String name;
     private String imageURL;
@@ -20,7 +24,7 @@ public class Item {
     private String description;
     private Date createdAt;
 
-    public Item(ObjectId id, String name, String imageURL, double price, String description, Date createdAt) {
+    public Item(String id, String name, String imageURL, double price, String description, Date createdAt) {
         super();
         this.id = id;
         this.name = name;

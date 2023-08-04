@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,17 +33,21 @@ public class ItemController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteItem(@PathVariable("id") String id) {
-        ObjectId objId;
 
-        try {
-            objId = new ObjectId(id);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Invalid Id format");
-        }
-
-        itemService.deleteItem(objId);
+        itemService.deleteItem(id);
 
         return  new ResponseEntity<String>("", HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping("/")
+    public ResponseEntity<Item> updateItem(@RequestBody Item item) {
+
+        return new ResponseEntity<Item>(itemService.updateItem(item), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/sorted", method = RequestMethod.GET)
+    public  ResponseEntity<List<Item>> getSortedItems(@RequestParam("by") String by) {
+        return new ResponseEntity<List<Item>>(itemService.sortItems(by), HttpStatus.OK);
     }
 
 }
