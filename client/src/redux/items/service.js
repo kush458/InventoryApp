@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/"
+const URL = "https://inventory-service-42x9.onrender.com/"
 
 const getItems = async () => {
     const response = await fetch(URL + 'items/', {
